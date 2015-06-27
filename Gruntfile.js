@@ -26,9 +26,10 @@ module.exports = function(grunt) {
         cmd: 'git clone https://github.com/composer/composer --depth=1 --no-single-branch -q'
       },
       get_latest_version: {
-        cmd: 'curl https://getcomposer.org/version',
+        cmd: 'curl -s https://getcomposer.org/version',
         callback: function(err, stdout, stderr) {
           if(stderr.length > 0) {
+	    console.log(stderr);
             grunt.fail.fatal('Get composer newest version fault!');
           }
 
@@ -68,9 +69,11 @@ module.exports = function(grunt) {
       },
       build: {
       	cmd: function(){
-      		return 'php compile && echo "' + version + '" > version';
+		var cwd = process.cwd();
+		console.log(cwd);
+      		return 'cd '+ cwd +'/composer/composer-' + version + '/bin && php compile && echo "' + version + '" > version';
       	},
-      	cwd: 'composer/bin'
+      	cwd: 'composer'
       }
       
     },
@@ -91,7 +94,7 @@ module.exports = function(grunt) {
           ]
         },
         files: [
-          {expand: true, cwd: 'composer', src: ['composer-*/src/Composer/Command/SelfUpdateCommand.php'], dest: 'compooser'}
+          {expand: true, cwd: 'composer', src: ['composer-*/src/Composer/Command/SelfUpdateCommand.php'], dest: 'composer'}
         ]
       }
     }

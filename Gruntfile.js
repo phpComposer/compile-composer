@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       }
       
     },
-    clean: ['composer'],
+    clean: ['composer', 'uploads'],
     
     replace: {
       dist: {
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
         options: {
           host: 'v0.ftp.upyun.com',
           authKey: 'upyun',
-          dest: '/'
+          dest: './'
         },
         files: [{
           expand: true,

@@ -146,6 +146,7 @@ module.exports = function(grunt) {
     'replace',
 
     'exec:build',
+    'copy',
     'ftp_push'
   ]);
 

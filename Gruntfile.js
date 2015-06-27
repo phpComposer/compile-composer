@@ -69,8 +69,8 @@ module.exports = function(grunt) {
       },
       build: {
       	cmd: function(){
-		var cwd = process.cwd();
-		console.log(cwd);
+		      var cwd = process.cwd();
+		      console.log(cwd);
       		return 'cd '+ cwd +'/composer/composer-' + version + '/bin && php compile && echo "' + version + '" > version';
       	},
       	cwd: 'composer'
@@ -98,7 +98,17 @@ module.exports = function(grunt) {
         ]
       }
     },
-    
+
+    copy: {
+      uploads: {
+        files: [
+          {
+            expand: true, src: 'composer/**/bin/*', dest:'uploads', flatten: true}
+          }
+        ]
+      }
+    },
+
     ftp_push: {
       upyun: {
         options: {
@@ -108,8 +118,8 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'composer',
-          src: ['composer-*/bin/*']
+          cwd: 'uploads',
+          src: ['*']
         }
         ]
       }
@@ -122,7 +132,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-replace');
-  grunt.loadNpmTasks('grunt-ftp-push-fullpath');
+  grunt.loadNpmTasks('grunt-ftp-push');
 
   // Default task.
   grunt.registerTask('default', [

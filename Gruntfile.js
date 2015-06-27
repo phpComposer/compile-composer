@@ -85,7 +85,7 @@ module.exports = function(grunt) {
           patterns: [
             {
               match: /getcomposer.org/ig,
-              replacement: 'www.phpcomposer.com'
+              replacement: 'install.phpcomposer.com'
             },
             {
               match: /\(extension_loaded\('openssl'\) \? 'https' : 'http'\)/ig,

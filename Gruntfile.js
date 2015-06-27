@@ -98,7 +98,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-    ,
+    
     ftp_push: {
       upyun: {
         options: {

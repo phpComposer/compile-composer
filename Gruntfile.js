@@ -103,7 +103,7 @@ module.exports = function(grunt) {
       uploads: {
         files: [
           {
-            expand: true, src: 'composer/**/bin/*', dest:'uploads', flatten: true}
+            expand: true, src: 'composer/**/bin/*', dest:'uploads', flatten: true
           }
         ]
       }

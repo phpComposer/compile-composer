@@ -94,6 +94,23 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'composer', src: ['composer-*/src/Composer/Command/SelfUpdateCommand.php'], dest: 'compooser'}
         ]
       }
+    },
+    ,
+    ftp_push: {
+      upyun: {
+        options: {
+          host: 'v0.ftp.upyun.com',
+          authKey: 'upyun',
+          dest: '/'
+        },
+        files: [{
+          expand: true,
+          cwd: 'composer',
+          src: ['composer-*/bin/*']
+        }
+        ]
+      }
+        
     }
   });
 
@@ -102,6 +119,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-ftp-push-fullpath');
 
   // Default task.
   grunt.registerTask('default', [
